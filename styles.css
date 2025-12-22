@@ -31,7 +31,7 @@
     --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
     
     /* Spacing */
-    --section-padding: clamp(5rem, 12vw, 10rem);
+    --section-padding: clamp(3rem, 8vw, 5rem);
     --container-max: 1200px;
     --container-padding: clamp(1.5rem, 5vw, 3rem);
     
@@ -894,14 +894,17 @@ body::after {
     background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    padding: 1.75rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    align-items: center;
+    text-align: center;
     transition: var(--transition-base);
     position: relative;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .cert-card::before {
@@ -970,8 +973,53 @@ body::after {
     transform: scale(1.1);
 }
 
+/* Certification badge images */
+.cert-badge-img {
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+    margin: 1rem auto 0.25rem;
+}
+
+.cert-card:hover .cert-badge-img {
+    transform: scale(1.03);
+}
+
+/* Certification card content */
+.cert-content {
+    padding: 0.75rem 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    width: 100%;
+}
+
+/* Verify indicator */
+.cert-verify {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    margin-top: 0.5rem;
+    transition: var(--transition-base);
+}
+
+.cert-card:hover .cert-verify {
+    color: var(--cert-accent);
+}
+
+.cert-verify svg {
+    width: 12px;
+    height: 12px;
+}
+
 .cert-title {
-    font-size: 1.0625rem;
+    font-size: 1rem;
     font-weight: 600;
     line-height: 1.4;
     letter-spacing: -0.01em;
@@ -979,22 +1027,21 @@ body::after {
 
 .cert-date {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 500;
     color: var(--color-text-tertiary);
 }
 
 .cert-badge {
-    font-size: 0.625rem;
+    font-size: 0.5625rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--cert-accent);
     background: color-mix(in srgb, var(--cert-accent) 12%, transparent);
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--radius-md);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
     width: fit-content;
-    margin-top: auto;
     border: 1px solid color-mix(in srgb, var(--cert-accent) 20%, transparent);
 }
 
