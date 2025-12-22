@@ -684,7 +684,9 @@ body::after {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     transition: var(--transition-base);
-    cursor: default;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .skill-item:hover {
