@@ -24,7 +24,7 @@
     --color-architect: #4a9eff;
     --color-developer: #00d4aa;
     --color-admin: #a78bfa;
-    --color-integration: #f0b429;
+    --color-integration: #ff6b9d;
     
     /* Typography */
     --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -954,6 +954,10 @@ body::after {
 
 .cert-admin {
     --cert-accent: var(--color-admin);
+}
+
+.cert-integration {
+    --cert-accent: var(--color-integration);
 }
 
 .cert-icon {
