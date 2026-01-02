@@ -493,7 +493,6 @@
             width = canvas.width = window.innerWidth;
             // On mobile, use the initial height to avoid address bar resize jank
             if (isMobile) {
-                // Use the larger of initial or current height to cover full screen
                 height = canvas.height = Math.max(initialHeight, window.innerHeight);
             } else {
                 height = canvas.height = window.innerHeight;

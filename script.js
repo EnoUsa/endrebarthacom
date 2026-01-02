@@ -50,34 +50,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===================================
-// Scroll-Based Navigation Styling
+// Scroll-Based Navigation Styling (DISABLED - using transparent nav)
 // ===================================
 
-const nav = document.querySelector('.nav');
-let lastScroll = 0;
-let ticking = false;
-
-const updateNav = () => {
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > 100) {
-        nav.style.background = 'rgba(5, 5, 5, 0.95)';
-        nav.style.borderBottomColor = 'rgba(42, 42, 42, 0.8)';
-    } else {
-        nav.style.background = 'rgba(5, 5, 5, 0.7)';
-        nav.style.borderBottomColor = 'rgba(20, 20, 20, 1)';
-    }
-    
-    lastScroll = currentScroll;
-    ticking = false;
-};
-
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(updateNav);
-        ticking = true;
-    }
-});
+// Removed to keep nav transparent with network background visible
 
 // ===================================
 // Intersection Observer for Scroll Animations
@@ -206,49 +182,6 @@ activeStyles.textContent = `
 document.head.appendChild(activeStyles);
 
 // ===================================
-// Orbit Animation Enhancement
-// ===================================
-
-const orbit = document.querySelector('.cert-orbit');
-if (orbit) {
-    const createOrbitDots = () => {
-        const rings = document.querySelectorAll('.orbit-ring');
-        const colors = ['rgba(201, 169, 98, 0.6)', 'rgba(74, 158, 255, 0.6)', 'rgba(0, 212, 170, 0.6)'];
-        
-        rings.forEach((ring, ringIndex) => {
-            const dotCount = 4 + ringIndex * 2;
-            const radius = ring.offsetWidth / 2;
-            
-            for (let i = 0; i < dotCount; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'orbit-dot';
-                
-                const angle = (360 / dotCount) * i;
-                const x = Math.cos(angle * Math.PI / 180) * radius;
-                const y = Math.sin(angle * Math.PI / 180) * radius;
-                
-                dot.style.cssText = `
-                    position: absolute;
-                    width: ${4 + ringIndex}px;
-                    height: ${4 + ringIndex}px;
-                    background: ${colors[ringIndex % colors.length]};
-                    border-radius: 50%;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) translate(${x}px, ${y}px);
-                    box-shadow: 0 0 ${6 + ringIndex * 2}px ${colors[ringIndex % colors.length]};
-                `;
-                
-                ring.appendChild(dot);
-            }
-        });
-    };
-    
-    // Initialize dots after layout
-    setTimeout(createOrbitDots, 600);
-}
-
-// ===================================
 // Magnetic Button Effect
 // ===================================
 
@@ -290,57 +223,6 @@ window.addEventListener('scroll', () => {
 });
 
 // ===================================
-// Cursor Trail Effect (subtle)
-// ===================================
-
-const createCursorTrail = () => {
-    const trail = document.createElement('div');
-    trail.className = 'cursor-trail';
-    trail.style.cssText = `
-        position: fixed;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(201, 169, 98, 0.03) 0%, transparent 70%);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 0;
-        transform: translate(-50%, -50%);
-        transition: transform 0.3s ease-out, opacity 0.3s ease;
-        opacity: 0;
-    `;
-    document.body.appendChild(trail);
-    
-    let mouseX = 0, mouseY = 0;
-    let trailX = 0, trailY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        trail.style.opacity = '1';
-    });
-    
-    document.addEventListener('mouseleave', () => {
-        trail.style.opacity = '0';
-    });
-    
-    const animateTrail = () => {
-        trailX += (mouseX - trailX) * 0.1;
-        trailY += (mouseY - trailY) * 0.1;
-        trail.style.left = trailX + 'px';
-        trail.style.top = trailY + 'px';
-        requestAnimationFrame(animateTrail);
-    };
-    
-    animateTrail();
-};
-
-// Only enable cursor trail on desktop
-if (window.matchMedia('(min-width: 1024px)').matches) {
-    createCursorTrail();
-}
-
-
-// ===================================
 // Keyboard Navigation Enhancement
 // ===================================
 
@@ -373,10 +255,3 @@ if (prefersReducedMotion.matches) {
     });
 }
 
-// ===================================
-// Console Easter Egg
-// ===================================
-
-console.log('%c✨ Welcome to my portfolio!', 'font-size: 20px; font-weight: bold; color: #c9a962;');
-console.log('%cBuilt with vanilla HTML, CSS & JS', 'font-size: 12px; color: #999;');
-console.log('%c12x Salesforce Certified', 'font-size: 14px; color: #4a9eff;');
