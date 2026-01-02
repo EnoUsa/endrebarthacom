@@ -477,9 +477,10 @@
         
         let width, height, points = [], mouse = { x: null, y: null };
         let isScrolling = false, scrollTimeout;
+        let initialHeight = window.innerHeight;
         
         // Detect mobile and adjust settings
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
         const config = {
             pointCount: isMobile ? 50 : 160,
             maxDistance: isMobile ? 120 : 180,
@@ -490,7 +491,13 @@
         
         function resize() {
             width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+            // On mobile, use the initial height to avoid address bar resize jank
+            if (isMobile) {
+                // Use the larger of initial or current height to cover full screen
+                height = canvas.height = Math.max(initialHeight, window.innerHeight);
+            } else {
+                height = canvas.height = window.innerHeight;
+            }
         }
         
         function createPoints() {
@@ -565,8 +572,16 @@
             requestAnimationFrame(draw);
         }
         
-        // Event listeners
-        window.addEventListener('resize', () => { resize(); createPoints(); });
+        // Event listeners - only recreate points on significant width change (not address bar)
+        let lastWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            const widthChanged = Math.abs(window.innerWidth - lastWidth) > 50;
+            if (widthChanged || !isMobile) {
+                lastWidth = window.innerWidth;
+                resize();
+                createPoints();
+            }
+        });
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
         

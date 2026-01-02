@@ -93,13 +93,14 @@ img {
    Background Effects
    =================================== */
 
-/* Vanta.js Background Container */
+/* Network Background Container */
 #vanta-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    height: 100lvh; /* Large viewport height - ignores address bar */
     z-index: -2;
 }
 
