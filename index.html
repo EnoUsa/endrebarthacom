@@ -482,8 +482,8 @@
         // Detect mobile and adjust settings
         const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
         const config = {
-            pointCount: isMobile ? 50 : 160,
-            maxDistance: isMobile ? 120 : 180,
+            pointCount: isMobile ? 80 : 160,
+            maxDistance: isMobile ? 140 : 180,
             lineColor: 'rgba(232, 208, 162, ',  // #e8d0a2
             bgColor: '#0a0812',
             speed: isMobile ? 0.2 : 0.3
@@ -502,7 +502,7 @@
         
         function createPoints() {
             points = [];
-            const count = window.innerWidth <= 768 ? 50 : config.pointCount;
+            const count = config.pointCount;
             for (let i = 0; i < count; i++) {
                 points.push({
                     x: Math.random() * width,
