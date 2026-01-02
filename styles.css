@@ -768,8 +768,10 @@ body::after {
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.25rem;
-    background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
     transition: var(--transition-base);
     cursor: pointer;
@@ -778,10 +780,10 @@ body::after {
 }
 
 .skill-item:hover {
-    background: var(--color-bg-card-hover);
-    border-color: var(--color-accent-warm);
+    background: rgba(232, 208, 162, 0.1);
+    border-color: rgba(232, 208, 162, 0.3);
     transform: translateX(8px) scale(1.02);
-    box-shadow: 0 4px 20px rgba(201, 169, 98, 0.1);
+    box-shadow: 0 4px 20px rgba(232, 208, 162, 0.1);
 }
 
 .skill-icon {
@@ -883,8 +885,10 @@ body::after {
 }
 
 .experience-card {
-    background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg) 100%);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-xl);
     padding: 2rem;
     margin-bottom: 2rem;
@@ -892,9 +896,10 @@ body::after {
 }
 
 .experience-card:hover {
-    border-color: var(--color-border-glow);
+    background: rgba(232, 208, 162, 0.05);
+    border-color: rgba(232, 208, 162, 0.2);
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.3);
 }
 
 .experience-header {
@@ -981,8 +986,10 @@ body::after {
 }
 
 .cert-card {
-    background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-xl);
     padding: 0;
     display: flex;
@@ -1023,10 +1030,10 @@ body::after {
 }
 
 .cert-card:hover {
-    background: var(--color-bg-card-hover);
-    border-color: var(--cert-accent, var(--color-border-glow));
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--cert-accent, rgba(232, 208, 162, 0.3));
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.3);
 }
 
 .cert-card:hover::before {
@@ -1175,17 +1182,19 @@ body::after {
     align-items: center;
     gap: 1.25rem;
     padding: 1.5rem 1.75rem;
-    background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg) 100%);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-xl);
     transition: var(--transition-base);
 }
 
 .contact-link:hover {
-    background: var(--color-bg-card-hover);
-    border-color: var(--color-accent-warm);
+    background: rgba(232, 208, 162, 0.1);
+    border-color: rgba(232, 208, 162, 0.3);
     transform: translateX(8px) scale(1.01);
-    box-shadow: 0 10px 40px -10px rgba(201, 169, 98, 0.15);
+    box-shadow: 0 10px 40px -10px rgba(232, 208, 162, 0.15);
 }
 
 .contact-icon {
@@ -1194,16 +1203,17 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
     color: var(--color-text-secondary);
-    border: 1px solid var(--color-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: var(--transition-base);
 }
 
 .contact-link:hover .contact-icon {
-    color: var(--color-accent-warm);
-    border-color: var(--color-accent-warm);
+    color: #e8d0a2;
+    background: rgba(232, 208, 162, 0.1);
+    border-color: rgba(232, 208, 162, 0.3);
 }
 
 .contact-info {
