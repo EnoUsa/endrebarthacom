@@ -6,6 +6,13 @@ A sleek, modern portfolio website showcasing Salesforce certifications and profe
 
 Visit: [endrebartha.com](https://endrebartha.com)
 
+directory: cd /Users/Andrew/Library/Mobile\ Documents/com\~apple\~CloudDocs/Documents/Job\ applications/Website    
+
+Git commit: git add . && git commit -m "Update cert cards to be clickable" && git push --force
+
+Background coming from 
+https://www.vantajs.com/?effect=net#
+
 ## 🛠️ Tech Stack
 
 - Pure HTML5, CSS3, and JavaScript
