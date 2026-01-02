@@ -790,7 +790,7 @@ body::after {
    =================================== */
 
 .experience {
-    background: var(--color-bg-elevated);
+    background: transparent;
 }
 
 .experience::before,
@@ -1120,7 +1120,7 @@ body::after {
    =================================== */
 
 .contact {
-    background: var(--color-bg-elevated);
+    background: transparent;
 }
 
 .contact::before {

@@ -476,12 +476,16 @@
         const ctx = canvas.getContext('2d');
         
         let width, height, points = [], mouse = { x: null, y: null };
+        let isScrolling = false, scrollTimeout;
+        
+        // Detect mobile and adjust settings
+        const isMobile = window.innerWidth <= 768;
         const config = {
-            pointCount: 160,
-            maxDistance: 180,
+            pointCount: isMobile ? 50 : 160,
+            maxDistance: isMobile ? 120 : 180,
             lineColor: 'rgba(232, 208, 162, ',  // #e8d0a2
             bgColor: '#0a0812',
-            speed: 0.3
+            speed: isMobile ? 0.2 : 0.3
         };
         
         function resize() {
@@ -491,7 +495,8 @@
         
         function createPoints() {
             points = [];
-            for (let i = 0; i < config.pointCount; i++) {
+            const count = window.innerWidth <= 768 ? 50 : config.pointCount;
+            for (let i = 0; i < count; i++) {
                 points.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
@@ -505,17 +510,22 @@
             ctx.fillStyle = config.bgColor;
             ctx.fillRect(0, 0, width, height);
             
+            // Skip animation updates while scrolling on mobile for smoother scroll
+            const shouldAnimate = !isMobile || !isScrolling;
+            
             // Update and draw connections
             for (let i = 0; i < points.length; i++) {
                 const p = points[i];
                 
-                // Move point
-                p.x += p.vx;
-                p.y += p.vy;
-                
-                // Bounce off edges
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
+                // Move point (only if not scrolling on mobile)
+                if (shouldAnimate) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    // Bounce off edges
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+                }
                 
                 // Connect to nearby points
                 for (let j = i + 1; j < points.length; j++) {
@@ -535,8 +545,8 @@
                     }
                 }
                 
-                // Connect to mouse
-                if (mouse.x !== null) {
+                // Connect to mouse (desktop only)
+                if (!isMobile && mouse.x !== null) {
                     const dx = p.x - mouse.x;
                     const dy = p.y - mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -559,6 +569,13 @@
         window.addEventListener('resize', () => { resize(); createPoints(); });
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        
+        // Pause animation during scroll on mobile
+        window.addEventListener('scroll', () => {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => { isScrolling = false; }, 150);
+        }, { passive: true });
         
         // Init
         resize();
